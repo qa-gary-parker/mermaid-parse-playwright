@@ -1,0 +1,29 @@
+%%{init: {"themeVariables": {"fontSize": "16px", "nodeBorder": "1px solid #333", "nodeTextColor": "#333", "edgeColor": "#333", "nodeBackground": "#fff", "edgeLabelBackground": "#ffffff"} }}%%
+flowchart TD
+    subgraph "should login successfully"
+        B1("fa:fa-globe Navigate to mywebsite.com")
+        C2("fa:fa-mouse-pointer Click #login")
+        B1 --> C2("fa:fa-mouse-pointer Click #login")
+        D3("fa:fa-keyboard Fill #username with 'valid-username'")
+        C2 --> D3("fa:fa-keyboard Fill #username with 'valid-username'")
+        D4("fa:fa-keyboard Fill #password with 'valid-password'")
+        D3 --> D4("fa:fa-keyboard Fill #password with 'valid-password'")
+        C5("fa:fa-mouse-pointer Click #submit")
+        D4 --> C5("fa:fa-mouse-pointer Click #submit")
+        E6("fa:fa-check Assertion: mywebsite.com/lobby toHaveURL")
+        C5 --> E6("fa:fa-check Assertion: mywebsite.com/lobby toHaveURL")
+    end
+    subgraph "should display invalid credentials message"
+        D7("fa:fa-keyboard Fill #username with 'invalid-username'")
+        C2 --> D7("fa:fa-keyboard Fill #username with 'invalid-username'")
+        D8("fa:fa-keyboard Fill #password with 'invalid-password'")
+        D7 --> D8("fa:fa-keyboard Fill #password with 'invalid-password'")
+        E9("fa:fa-check Assertion: 'Error message - invalid credentials' toBeVisible")
+        D8 --> E9("fa:fa-check Assertion: 'Error message - invalid credentials' toBeVisible")
+    end
+    subgraph "Manual test - should display empty username message"
+        D10("fa:fa-keyboard Fill #username with ' '")
+        C2 --> D10("fa:fa-keyboard Fill #username with ' '")
+        E11("fa:fa-check Assertion: 'Error message - empty username' toBeVisible")
+        D10 --> E11("fa:fa-check Assertion: 'Error message - empty username' toBeVisible")
+    end
